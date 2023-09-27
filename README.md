@@ -1,4 +1,4 @@
-# spring-boot-thymeleaf-mvc-crud
+# 5) spring-boot-thymeleaf-mvc-crud
 
 - **Web sayfaları üretmek için Thymeleaf kullanıldı**
 - **Spring Security ile admin girişi yapıldı. Security=>SecurityConfig**
