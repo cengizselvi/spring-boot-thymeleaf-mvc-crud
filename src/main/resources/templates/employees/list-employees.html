@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.css"/>
+
+    <title>Yönetim Paneli </title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3> Yönetim Paneli </h3>
+    <hr>
+    <div class="d-flex justify-content-end ">
+
+        <form action="#" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Çıkış" >
+        </form>
+    </div>
+
+
+    <div  align="center" class="container mt-5">
+        <h2>İsme Göre Ara</h2>
+        <form th:action="@{/search2}" method="get">
+            <input type="text" name="keyword" th:value="${keyword}"  placeholder="Ad veya Soyad giriniz" size="50" ><br>
+            <div> <button type="submit" class="btn btn-success" >Ara</button>
+                <button type="submit" class="btn btn-danger" >Sıfırla</button></div>
+        </form>
+    </div>
+
+
+    <a th:href="@{/showFormForAdd}"
+       class="btn btn-primary btn-sm mb-3">
+        Çalışan Ekle</a>
+
+
+    <a th:href="@{/list}"
+       class="btn btn-primary btn-sm mb-3">
+        Çalışanları Listele</a>
+
+    <a th:href="@{/news}"> Ana Sayfa </a>
+
+
+ <!--   class="table table-bordered table-striped" -->
+
+    <table id="myTable" class="table table-responsive" >
+        <thead class="table">
+        <tr>
+            <th>ID</th>
+            <th>Adı</th>
+            <th>Soyadı</th>
+            <th>İşlemler</th>
+            <th>Resim</th>
+
+
+
+        </tr>
+        </thead>
+
+
+
+            <tr   th:each="l : ${list}" th:field="${l}">
+
+                <td th:text="${l.id}"></td>
+                <td th:text="${l.firstName}"></td>
+                <td th:text="${l.lastName}"></td>
+
+                <td>
+                    <a th:href="@{/showFormForUpdate(employeeId=${l.id})}"
+                    class="btn btn-outline-success">
+                        Güncelle
+                    </a>
+          <!--     <button class="btn btn-sm btn-danger"><i class="bi bi-trash3-fill"></i></button> -->
+
+                <a th:href="@{/delete(employeeId=${l.id})} "
+                       class="btn btn-outline-danger"
+                        onclick="if (!(confirm('Are you sure?'))) return false">
+                       SİL
+                    </a>
+                </td>
+                      <td>
+                       <img th:src="@{'/image?id='+ ${l.id}}" width="100px"
+                                   height="100px">
+
+                          <a th:href="@{/showFormForUpdate2(employeeId=${l.id})}"
+                             class="btn btn-outline-success">
+                              Güncelle
+                          </a>
+
+                        </td>
+
+
+
+
+            </tr>
+
+        </tbody>
+    </table>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.js"></script>
+
+
+    <script>
+        $('#myTable').DataTable({
+            language: {
+                info: "_TOTAL_ kayıttan _START_ - _END_ kayıt gösteriliyor.",
+                infoEmpty:      "Gösterilecek hiç kayıt yok.",
+                loadingRecords: "Kayıtlar yükleniyor.",
+                zeroRecords: "Tablo boş",
+                search: "Arama:",
+                infoFiltered:   "(toplam _MAX_ kayıttan filtrelenenler)",
+                buttons: {
+                    copyTitle: "Panoya kopyalandı.",
+                    copySuccess:"Panoya %d satır kopyalandı",
+                    copy: "Kopyala",
+                    print: "Yazdır",
+
+
+                },
+
+                paginate: {
+                    first: "İlk",
+                    previous: "Önceki",
+                    next: "Sonraki",
+                    last: "Son"
+                },
+            },
+            dom: 'Bfrtip',
+            buttons: [
+
+            ],
+            responsive: true
+        });
+</script>
+</div>
+
+</body>
+</html>
+
+
+

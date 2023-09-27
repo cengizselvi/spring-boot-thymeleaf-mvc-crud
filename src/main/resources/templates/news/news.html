@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <style>
+    body {
+    margin: 0;
+}
+
+header{
+    background-color: black;
+    color: white;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.main-content {
+    background-color: rgb(230, 230, 230);
+    margin: auto;
+    margin-top: 30px;
+    width: 75%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+
+.item{
+    background-color: rgb(255, 255, 255);
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.item-name{
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 3px;
+    font-size: larger;
+    font-weight: bold;
+    width: calc(100% - 6px);
+    margin-top: 0;
+}
+
+.item img{
+    width: 150px;
+    height: 200px;
+}
+
+.add-btn{
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    width: 70%;
+    text-align: center;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.add-btn:hover {
+    background-color: rgb(88, 88, 88);
+}
+
+.cart-ico{
+    text-decoration: none;
+    color: white;
+}
+
+.cart-ico:hover{
+    color: brown;
+}
+
+table, tr {
+    width: 80%;
+    border: 1px solid black;
+}
+
+th{
+    text-align: left;
+    border: 1px solid black;;
+}
+
+td img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.mbtn{
+    background-color: blanchedalmond;
+    text-decoration: none;
+    display: block;
+    width: 30px;
+    height: 25px;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 5px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+td p{
+    margin: 3px;
+    padding: 5px
+}
+
+form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label{
+    width: 100%;
+}
+
+.infoMsg{
+    width: 100%;
+    color: green;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 40%;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+</style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title> </title>
+</head>
+
+<body>
+<div class="container mt-5">
+    <h2 align="center">İsme Göre Ara</h2>
+    <form th:action="@{/search}" method="get">
+        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Ad veya Soyad giriniz" size="50" ><br>
+       <div> <button type="submit" class="btn btn-success" >Ara</button>
+        <button type="submit" class="btn btn-danger" >Sıfırla</button></div>
+    </form>
+</div>
+
+
+<br><br>
+<br>
+<!-- <a th:href="@{/login}"> PANEL PAGE </a>  -->
+<h2 align="center"> ÇALIŞANLAR LİSTESİ </h2>
+<p th:text="${msg}" style=""></p>
+<!-- Trigger/Open The Modal -->
+
+
+<div class="main-content">
+<div class="item"   th:each="l : ${list}" th:field="${l}">
+ <br>
+
+            <img class="item-name" th:src="@{'/image?id='+ ${l.id}}" width="100px"
+                 height="100px"/>
+
+            <h5 class="item-name" th:text="${l.firstName}"/>
+
+            <h5 class="item-name" th:text="${l.lastName}"/>
+            <!-- Button trigger modal -->
+             <button type="button" class="btn btn-primary" data-toggle="modal"
+                  th:attr="data-target='#exampleModal'+*{l.id}">
+                Detay
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" th:id="*{'exampleModal' + {l.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" th:text="${l.firstName}" id="exampleModalLabel"></h5> &nbsp;
+                            <h5 class="modal-title" th:text="${l.lastName}" ></h5>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+
+                        <div class="modal-body">
+                            <img  align="center" class="item-name" th:src="@{'/image?id='+ ${l.id}}" width="100px"
+                                 height="100px"/>
+                            <h5 align="center" th:text="@{${l.info}}" ></h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</td>
+
+
+
+
+
+
+<!-- section 2 -->
+<div id="mySearch" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+            <table style="padding: 5px; text-align: center;" align="center">
+                <tr>
+                    <td>yazılara buraya gelecek</td>
+
+                </tr>
+            </table>
+            <center>
+                <input type="submit" value="Close" />
+            </center>
+    </div>
+
+</div>
+
+
+<script>
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
+		//2
+		var searchModel = document.getElementById('mySearch');
+		var btn1 = document.getElementById("myBtn1");
+		var span1 = document.getElementsByClassName("close")[0];
+		btn1.onclick = function() {
+			searchModel.style.display = "block";
+		}
+		span1.onclick = function() {
+			searchModel.style.display = "none";
+		}
+		window.onclick = function(event) {
+			if (event.target == searchModel) {
+				searchModel.style.display = "none";
+			}
+		}
+	</script>
+</body>
+</html>
+
+
+

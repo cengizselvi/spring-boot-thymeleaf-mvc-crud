@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title></title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Admin Giriş</h3>
+    <hr>
+    <form action="#" th:action="@{/login}" method="POST">
+
+        <div  class="alert alert-success col-xs-offset-5 col-xs-10 col-sm-4" th:if="${param.logout}" >
+            <i>successfully logged out</i>
+        </div>
+        <div th:if="${param.error}"  class="alert alert-danger col-xs-offset-5 col-xs-10 col-sm-4">
+            <i>The username or password is incorrect try again</i>
+        </div>
+
+        <p>
+           <input required="true" type="text" placeholder="Kullanıcı Adı" name="username" class="form-control mb-4 w-25" />
+        </p>
+        <p>
+            <input required="true" type="password" placeholder="Şifre" name="password" class="form-control mb-4 w-25" />
+        </p>
+        <button type="submit" class="btn btn-info col-2"> Giriş Yap </button>
+
+        <br><br>
+
+
+    </form>
+
+    <br><br>
+
+    </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
+
+
+

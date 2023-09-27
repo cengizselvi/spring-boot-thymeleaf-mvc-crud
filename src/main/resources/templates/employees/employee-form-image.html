@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title></title>
+</head>
+
+<body>
+<div class="container">
+
+    <h3>Çalışan Ekle-Düzenle</h3>
+    <hr>
+
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <th:block th:each="l : ${list}" th:field="${l}">
+                        <div class="col-sm-3">
+                            <!--   <div>
+                                   <a th:href="@{'/downloadfile?id=' + ${empList.id}}"><i
+                                           class="fa fa-download"></i></a>
+                               </div>  -->
+                            <div>
+                                <img th:src="@{'/image?id='+ ${l.id}}" width="100px"
+                                     height="100px">
+
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form action="#"   enctype="multipart/form-data" th:action="@{/save2}" th:object="${list}" method="POST">
+        <input type="hidden" th:field="*{id}" /> <!-- hangi çalışanın güncelleceğini söyler -->
+
+        <input class="form-control"   name="file" type="file" id="formFile"/><br />
+
+        <input  type="hidden" th:field="*{firstName}"
+                class="form-control mb-4 w-25" placeholder="Adı"/>
+
+         <input  type="hidden" th:field="*{lastName}"
+            class="form-control mb-4 w-25" placeholder="Soyadı"/>
+
+        <textarea hidden th:field="*{info}"
+                    class="form-control mb-4 w-2 " placeholder="Bilgiler"> </textarea>
+
+        <button type="submit" class="btn btn-info col-2"> Kaydet </button>
+        <a th:href="@{/list}"
+           class="btn btn-danger col-2">
+            İptal </a>
+    </form>
+
+</div>
+
+</body>
+</html>
