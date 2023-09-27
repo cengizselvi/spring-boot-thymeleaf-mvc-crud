@@ -2,7 +2,7 @@
 
 - **Web sayfaları üretmek için Thymeleaf kullanıldı**
 - **Spring Security ile admin girişi yapıldı. Security=>SecurityConfig**
-- **Ekleme,silme,güncelleme ve veritabanından bilgiler çekilip taploda gösterildi.**
+- **Ekleme,silme,güncelleme ve veritabanından bilgiler çekilip tabloda gösterildi.**
 - **Yetkiye göre giriş sayfası yapıldı.**
 - **Tablo olarak önce normal daha sonra DataTables kullanıldı.**
 - **Ad veya Soyada göre arama yapıldı.**
